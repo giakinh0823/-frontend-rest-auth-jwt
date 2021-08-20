@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import { useSelector } from 'react-redux';
 
 AuthFeature.propTypes = {
 
@@ -11,13 +11,8 @@ AuthFeature.propTypes = {
 function AuthFeature(props) {
 
     const match = useRouteMatch()
-    const history = useHistory();
     const user = useSelector(state => state.user.current)
     const isLogin = !!user.username
-
-    if(isLogin){
-        history.push("/")
-    }
 
     return (
         <div>

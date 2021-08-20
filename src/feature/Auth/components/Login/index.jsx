@@ -3,6 +3,7 @@ import LoginForm from '../LoginForm';
 import { useDispatch } from 'react-redux';
 import { login } from '../../userSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 
 
 Login.propTypes = {
@@ -12,6 +13,8 @@ Login.propTypes = {
 function Login(props) {
 
     const dispatch = useDispatch()
+    const history = useHistory();
+
 
     const onSubmit = async (values) => {
         console.log(values)
@@ -20,6 +23,7 @@ function Login(props) {
             const resultAction = await dispatch(action);
             const user = unwrapResult(resultAction)
             console.log(user)
+            history.push("/")
         } catch (error) {
             console.log("error: ", error)
         }
